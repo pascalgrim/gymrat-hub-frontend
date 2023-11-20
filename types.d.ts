@@ -1,3 +1,8 @@
+type Route = {
+  name: string;
+  icon: React.ReactNode;
+};
+
 type Workout = {
   workout_id: number;
   workout_name: string;

@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from "@/components/ui/toaster"
 import Providers from './providers'
-
-import { getServerSession } from 'next-auth'
 import Sidenav from '@/components/layout/Sidenav'
 import Container from '@/components/layout/Container'
 
@@ -20,14 +18,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession()
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className='flex'>
-            {session && <Sidenav />}
-            <div className='flex-1 overflow-auto '>
+          <div className=''>
+            <Sidenav />
+            <div className='overflow-hidden ml-40'>
               {children}
             </div>
           </div>
