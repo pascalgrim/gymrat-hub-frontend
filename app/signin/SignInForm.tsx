@@ -7,23 +7,23 @@ import { api } from '../../util/axios'
 import { useMutation } from '@tanstack/react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
-
-
-
-
+import { useAuth } from '../../provider/AuthProvider'
 
 function SignInForm() {
     const { toast } = useToast()
     const router = useRouter()
-    async function signUp(formdata: FormData) {
+    const { authenticated, signIn } = useAuth()
+    async function action(formdata: FormData) {
         const email = formdata.get("email")
         const password = formdata.get("password")
         try {
-            await api.post("/auth/signIn", {
+            const res = await api.post("/auth/signIn", {
                 email,
                 password,
             })
-            router.push("/workouts")
+            const accessToken = res.data.access_token
+            signIn(accessToken)
+            router.push("/dashboard")
 
         } catch (error: any) {
             console.log(error)
@@ -38,7 +38,7 @@ function SignInForm() {
     return (
         <div className='flex flex-col items-center gap-12'>
             <h2 className='text-2xl'>Einloggen</h2>
-            <form className='grid grid-cols-2 gap-2' action={signUp}>
+            <form className='grid grid-cols-2 gap-2' action={action}>
                 <div>
                     <Label htmlFor="email">E-Mail</Label>
                     <Input id="email" name='email' type="email" required />

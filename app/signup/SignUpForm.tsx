@@ -7,9 +7,11 @@ import { api } from '../../util/axios'
 import { useMutation } from '@tanstack/react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
+import { useAuth } from '../../provider/AuthProvider'
 
 
 function SignUpForm() {
+    const { signIn } = useAuth()
     const { toast } = useToast()
     const router = useRouter()
     async function signUp(formdata: FormData) {
@@ -35,10 +37,9 @@ function SignUpForm() {
                 firstName,
                 lastName
             })
-            console.log(res)
-            // const accesstoken = res.data.access_token
-
-            // Authentifiziert -> View ändern
+            const accessToken = res.data.access_token
+            signIn(accessToken)
+            router.push("/")
         } catch (error: any) {
             toast({
                 variant: "destructive",

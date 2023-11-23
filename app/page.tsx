@@ -1,14 +1,11 @@
-
-
-import Dashboard from './Dashboard'
-import LandingPage from './LandingPage'
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
 
-
   return (
-    <>
-      <LandingPage />
-    </>
+    <div className=''>
+      <Button>A</Button>
+      asaa
+    </div>
   )
 }

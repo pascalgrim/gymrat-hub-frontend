@@ -4,6 +4,7 @@ import React from 'react'
 import SignInButton from '../auth/SignInButton'
 import DarkModeToggle from '../ui/DarkModeToggle'
 import { Activity, Dumbbell, LayoutDashboard, Settings } from 'lucide-react'
+import { useAuth } from '../../../provider/AuthProvider'
 
 const routes: Route[] = [{
     name: "Dashboard",
@@ -24,11 +25,12 @@ const routes: Route[] = [{
 ]
 
 function Sidenav() {
+    const { authenticated, signIn, signOut, userId } = useAuth()
     return (
         <div className='w-40 fixed h-full flex flex-col justify-between items-center py-20'>
             {/* UP */}
             <div className='w-full flex flex-col items-center'>
-
+                {authenticated ? <div>Authentifiziert</div> : <div>Nicht authentifiziert</div>}
                 <ul className='mt-12 w-full flex flex-col items-center justify-center'>
                     {routes.map(route => <li className='w-full py-4 cursor-pointer hover:opacity-50 flex justify-center items-center' key={route.name}>{route.icon}</li>)}
                 </ul>
