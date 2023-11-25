@@ -7,24 +7,20 @@ import { api } from '../../util/axios'
 import { useMutation } from '@tanstack/react-query'
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
-import { useAuth } from '../../provider/AuthProvider'
+import { useLogin } from '../../hooks/auth/useLogin'
 
 function SignInForm() {
     const { toast } = useToast()
     const router = useRouter()
-    const { authenticated, signIn } = useAuth()
+    const { login } = useLogin()
     async function action(formdata: FormData) {
         const email = formdata.get("email")
         const password = formdata.get("password")
+        if (!email) return
+        if (!password) return
         try {
-            const res = await api.post("/auth/signIn", {
-                email,
-                password,
-            })
-            const accessToken = res.data.access_token
-            signIn(accessToken)
-            router.push("/dashboard")
-
+            await login(email.toString(), password.toString())
+            // router.push("/dashboard")
         } catch (error: any) {
             console.log(error)
             toast({

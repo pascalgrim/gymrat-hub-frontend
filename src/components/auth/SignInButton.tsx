@@ -1,21 +1,25 @@
 "use client"
 import React from 'react'
 import { Button } from '../ui/button'
-import { LogOut } from 'lucide-react'
-import { useAuth } from '../../../provider/AuthProvider'
 import { useRouter } from 'next/navigation'
+import { useLogout } from '../../../hooks/auth/useLogout'
+import { useAuthContext } from '../../../hooks/auth/useAuthContext'
 
 interface SignInButtonProps extends React.ComponentPropsWithoutRef<"button"> {
     specialProp?: string;
 }
 
 function SignInButton(props: SignInButtonProps) {
-    const { authenticated, signIn, signOut } = useAuth()
+    const { logout } = useLogout()
+    const { state } = useAuthContext()
     const router = useRouter()
+    function handleLogOut() {
+        logout()
+    }
     return (
         <>
-            {authenticated ?
-                <Button onClick={() => signOut()} {...props}>Logout</Button>
+            {state.user ?
+                <Button onClick={handleLogOut} {...props}>Logout</Button>
                 :
                 <Button onClick={() => router.push("/signin")} {...props}>Login</Button>}
         </>

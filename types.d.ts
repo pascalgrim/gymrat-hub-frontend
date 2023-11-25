@@ -11,3 +11,14 @@ type Workout = {
   created_at: Date;
   updated_at: Date;
 };
+
+type User = {
+  user_id: number;
+  username: string;
+  email: string;
+  hash: string;
+  first_name: string;
+  last_name: string;
+  created_at: Date;
+  updated_at: Date;
+};

@@ -2,19 +2,17 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import React from 'react'
-import { api } from '../../util/axios'
-import { useMutation } from '@tanstack/react-query'
+import React from "react"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
-import { useAuth } from '../../provider/AuthProvider'
+import { useSignup } from '../../hooks/auth/useSignup'
 
 
 function SignUpForm() {
-    const { signIn } = useAuth()
     const { toast } = useToast()
     const router = useRouter()
-    async function signUp(formdata: FormData) {
+    const { signup } = useSignup()
+    async function submit(formdata: FormData) {
         const username = formdata.get("username")
         const email = formdata.get("email")
         const firstName = formdata.get("firstName")
@@ -29,18 +27,16 @@ function SignUpForm() {
             })
             return
         }
+        if (!username) return
+        if (!email) return
+        if (!password) return
+        if (!repeatedPassword) return
+
         try {
-            const res = await api.post("/auth/signup", {
-                email,
-                password,
-                username,
-                firstName,
-                lastName
-            })
-            const accessToken = res.data.access_token
-            signIn(accessToken)
-            router.push("/")
+            await signup(email.toString(), password.toString(), username.toString(), firstName?.toString(), lastName?.toString())
+
         } catch (error: any) {
+
             toast({
                 variant: "destructive",
                 title: "Fehler",
@@ -48,11 +44,12 @@ function SignUpForm() {
             })
             return
         }
+
     }
     return (
         <div className='flex flex-col items-center gap-12'>
             <h2 className='text-2xl'>Registrieren</h2>
-            <form className='grid grid-cols-2 gap-2' action={signUp}>
+            <form className='grid grid-cols-2 gap-2' action={submit}>
                 <div>
                     <Label htmlFor="username">Username</Label>
                     <Input id="username" name="username" type="text" required />
@@ -78,6 +75,7 @@ function SignUpForm() {
                     <Input id="repeatedPassword" name="repeatedPassword" type="password" required />
                 </div>
                 <Button type="submit" className='mt-4 col-span-2'>Registrieren</Button>
+
             </form>
         </div>
     )

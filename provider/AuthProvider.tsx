@@ -1,67 +1,74 @@
-import React, { useState, useEffect, useContext, createContext, ReactNode } from 'react';
-import { jwtDecode } from "jwt-decode";
-interface AuthContextProps {
-  authenticated: boolean;
-  signIn: (token: string) => void;
-  signOut: () => void;
-  userId: number
+
+import React, { useState, useEffect, useContext, createContext, ReactNode, useReducer } from 'react';
+
+interface UserPayload {
+    access_token: string;
+    userId: number;
+    email: string;
+}
+interface AuthState {
+    user: UserPayload | null;
 }
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+interface AuthContextProps {
+    state: AuthState;
+    dispatch: React.Dispatch<AuthAction>;
+}
 
 interface AuthProviderProps {
-  children: ReactNode;
+    children: ReactNode;
+}
+
+interface LoginAction {
+    type: 'LOGIN';
+    payload: UserPayload;
+}
+
+interface LogoutAction {
+    type: 'LOGOUT';
+}
+type AuthAction = LoginAction | LogoutAction;
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+
+interface AuthProviderProps {
+    children: ReactNode;
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-}
-
-export function AuthProvider({ children }: AuthProviderProps) {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [userId, setUserId] = useState<number>(-1)
-  useEffect(() => {
-    const storedToken = localStorage.getItem('accessToken');
-    if (storedToken) {
-      setAuthenticated(true);
-      setUserId(getUserId(storedToken))
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error('useAuth must be used within an AuthProvider');
     }
-  }, []);
+    return context;
+}
+export const authReducer = (state: AuthState, action: AuthAction) => {
+    switch (action.type) {
+        case 'LOGIN':
+            return { user: action.payload };
+        case 'LOGOUT':
+            return { user: null };
+        default:
+            return state;
+    }
+}
+export function AuthProvider({ children }: AuthProviderProps) {
 
-  const signIn = (token: string) => {
-    localStorage.setItem('accessToken', token);
-    setAuthenticated(true);
-  };
+    const [state, dispatch] = useReducer(authReducer,
+        { user: null }
+    )
 
-  const signOut = () => {
-    localStorage.removeItem('accessToken');
-    setAuthenticated(false);
-  };
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        const user: UserPayload | null = storedUser ? JSON.parse(storedUser) : null;
 
-  const getUserId = (token: string) => {
-    const decodedToken: {
-      sub: number,
-      email: string,
-      iat: number
-    } = jwtDecode(token)
-    return decodedToken.sub
-  }
+        if (user) {
+            dispatch({ type: "LOGIN", payload: user });
+        }
+    }, [])
 
-
-  const value: AuthContextProps = {
-    authenticated,
-    signIn,
-    signOut,
-    userId
-  };
-
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+    return (
+        <AuthContext.Provider value={{ state, dispatch }}>
+            {children}
+        </AuthContext.Provider>
+    );
 }

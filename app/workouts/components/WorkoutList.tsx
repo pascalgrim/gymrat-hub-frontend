@@ -2,13 +2,14 @@
 
 import React from 'react'
 import WorkoutCard from './WorkoutCard'
-import { useAuth } from '../../../provider/AuthProvider'
 import { getWorkouts } from '../getWorkouts'
 import { useQuery } from '@tanstack/react-query'
+import { useAuthContext } from '../../../hooks/auth/useAuthContext'
 
 
 function WorkoutList() {
-    const { userId } = useAuth()
+    const { state } = useAuthContext()
+    const userId = state.user?.userId
     const { data } = useQuery({
         queryKey: ["workouts"],
         queryFn: () => getWorkouts(userId)
