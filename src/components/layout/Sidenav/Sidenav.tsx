@@ -16,7 +16,7 @@ function Sidenav() {
 
     const { selectedRoute, setSelectedRoute } = useSelectedRoute()
     return (
-        <div className='w-60 fixed h-full flex flex-col justify-between items-center py-16 border-r '>
+        <div className='w-60 fixed h-full flex-col justify-between items-center py-16 border-r '>
             {/* UP */}
 
             <div className='w-full flex flex-col items-center'>
