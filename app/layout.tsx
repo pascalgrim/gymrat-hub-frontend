@@ -25,7 +25,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Sidenav />
-          <div className='overflow-hidden ml-60 pl-8'>
+          <div className='ml-60 pl-8'>
             {children}
           </div>
           <Toaster />

@@ -9,7 +9,7 @@ function WorkoutCard({ workout }: WorkoutCard) {
     const { created_at, updated_at, user_id, workout_id, workout_name } = workout
 
     return (
-        <div className='shadow rounded-lg h-96 p-6'>
+        <div className='shadow rounded-lg h-96 p-6 border'>
             <h2>{workout_name}</h2>
             {workout_id}
         </div>

@@ -7,8 +7,8 @@ type ContainerProps = {
 }
 function Container({ children, title, ...props }: ContainerProps) {
     return (
-        <div className='h-full px-8 pt-12' {...props}>
-            <h1 className=' py-4 '>{title}</h1>
+        <div className='h-full px-8  relative' {...props}>
+            <h1 className='py-8 sticky top-0 z-10 bg-background'>{title}</h1>
             {children}
         </div>
     )
