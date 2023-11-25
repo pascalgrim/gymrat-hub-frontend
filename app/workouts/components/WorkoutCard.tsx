@@ -11,7 +11,7 @@ function WorkoutCard({ workout }: WorkoutCard) {
     return (
         <div className='shadow rounded-lg h-96 p-6'>
             <h2>{workout_name}</h2>
-            <h3></h3>
+            {workout_id}
         </div>
     )
 }

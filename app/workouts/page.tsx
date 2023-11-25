@@ -8,7 +8,6 @@ import { useAuth } from '../../provider/AuthProvider'
 
 
 async function WorkoutPage() {
-
     return (
         <Container title='Workouts'>
             <WorkoutList />

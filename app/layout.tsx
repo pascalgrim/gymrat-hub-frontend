@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from "@/components/ui/toaster"
-import Sidenav from '@/components/layout/Sidenav'
+import Sidenav from '@/components/layout/Sidenav/Sidenav'
 import Providers from './providers'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,7 +25,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Sidenav />
-          <div className='overflow-hidden ml-40'>
+          <div className='overflow-hidden ml-60 pl-8'>
             {children}
           </div>
           <Toaster />

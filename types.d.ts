@@ -1,5 +1,6 @@
 type Route = {
   name: string;
+  route: string;
   icon: React.ReactNode;
 };
 

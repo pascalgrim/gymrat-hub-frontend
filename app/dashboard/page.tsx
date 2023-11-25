@@ -4,10 +4,8 @@ import Container from '@/components/layout/Container'
 
 function Dashboard() {
     return (
-        <Container>
-            <div className=''>
-                DASHBOARD
-            </div>
+        <Container title='Dashboard'>
+
         </Container>
     )
 }

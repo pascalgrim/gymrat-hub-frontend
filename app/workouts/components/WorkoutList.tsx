@@ -16,7 +16,7 @@ function WorkoutList() {
     const workouts = data
     return (
         <div className='grid grid-cols-2 gap-4'>
-            {workouts?.map(workout => <WorkoutCard workout={workout} />)}
+            {workouts?.map(workout => <WorkoutCard workout={workout} key={workout.workout_id} />)}
         </div>
     )
 }

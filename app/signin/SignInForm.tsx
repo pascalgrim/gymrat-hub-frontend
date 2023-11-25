@@ -49,7 +49,7 @@ function SignInForm() {
                     <Input id="password" name="password" type="password" required />
                 </div>
 
-                <Button type="submit" className='mt-4 col-span-2'>Registrieren</Button>
+                <Button type="submit" className='mt-4 col-span-2'>Einloggen</Button>
             </form>
         </div>
     )

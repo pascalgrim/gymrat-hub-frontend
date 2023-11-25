@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-query'
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { AuthProvider } from '../provider/AuthProvider'
+import { SelectedRouteProvider } from '../provider/SelectedRouteProvider'
 
 function Providers({ children, ...props }: { children: React.ReactNode }) {
     const queryClient = new QueryClient()
@@ -16,7 +17,9 @@ function Providers({ children, ...props }: { children: React.ReactNode }) {
                 enableSystem
                 disableTransitionOnChange>
                 <QueryClientProvider client={queryClient}>
-                    {children}
+                    <SelectedRouteProvider>
+                        {children}
+                    </SelectedRouteProvider>
                 </QueryClientProvider>
             </NextThemesProvider>
         </AuthProvider>
