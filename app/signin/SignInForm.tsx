@@ -19,8 +19,10 @@ function SignInForm() {
         if (!email) return
         if (!password) return
         try {
-            await login(email.toString(), password.toString())
-            // router.push("/dashboard")
+            const res = await login(email.toString(), password.toString())
+            if (res.status === 201) {
+                router.push("/dashboard")
+            }
         } catch (error: any) {
             console.log(error)
             toast({

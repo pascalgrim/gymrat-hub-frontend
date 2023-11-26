@@ -1,8 +1,10 @@
 import Container from '@/components/layout/Container'
 import TitleSection from '@/components/layout/TitleSection'
 import React from 'react'
+import { api } from '../../util/axios'
 
-function ExercisesPage() {
+async function ExercisesPage() {
+
     return (
         <Container >
             <TitleSection title='Übungen'></TitleSection>

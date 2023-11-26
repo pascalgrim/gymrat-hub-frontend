@@ -10,11 +10,12 @@ export const useLogin = () => {
     });
 
     if (!(res.status = 201)) {
-      return;
+      return res;
     }
     const data = res.data;
     localStorage.setItem("user", JSON.stringify(data));
     dispatch({ type: "LOGIN", payload: data });
+    return res;
   };
 
   return { login };
