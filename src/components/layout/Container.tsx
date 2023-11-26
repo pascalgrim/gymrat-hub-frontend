@@ -1,14 +1,13 @@
 import { chdir } from 'process'
 import React from 'react'
+import TitleSection from './TitleSection'
 
 type ContainerProps = {
-    children: React.ReactNode,
-    title?: string
+    children: React.ReactNode
 }
-function Container({ children, title, ...props }: ContainerProps) {
+function Container({ children, ...props }: ContainerProps) {
     return (
-        <div className='h-full px-8  relative' {...props}>
-            <h1 className='py-8 sticky top-0 z-10 bg-background'>{title}</h1>
+        <div className='h-full px-8 relative' {...props}>
             {children}
         </div>
     )

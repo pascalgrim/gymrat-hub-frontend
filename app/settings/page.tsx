@@ -1,9 +1,11 @@
 import Container from '@/components/layout/Container'
+import TitleSection from '@/components/layout/TitleSection'
 import React from 'react'
 
 function SettingsPage() {
     return (
-        <Container title='Einstellungen'>
+        <Container >
+            <TitleSection title='Einstellungen'></TitleSection>
 
         </Container>
     )

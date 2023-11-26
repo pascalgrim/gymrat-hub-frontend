@@ -14,7 +14,7 @@ function SidenavItem({ route }: SidenavItemProps) {
         if (!selected) setSelectedRoute(route)
     }
     return (
-        <Link href={route.route} onClick={handleClick} className={cn('w-full px-12 py-4 cursor-pointer flex items-center hover:bg-secondaryBackground', selected && "border-r-2 border-primary")} key={route.name}>
+        <Link href={`/${route.route}`} onClick={handleClick} className={cn('w-full px-12 py-4 cursor-pointer flex items-center hover:bg-secondaryBackground', selected && "border-r-2 border-primary")} key={route.name}>
             <div className='flex w-full items-center gap-4'>
                 <div>
                     {route.icon}

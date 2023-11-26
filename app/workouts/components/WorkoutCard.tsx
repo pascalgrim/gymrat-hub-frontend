@@ -1,5 +1,7 @@
 import React from 'react'
 import { formatDate } from '../../../util/date'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 type WorkoutCard = {
     workout: Workout
@@ -12,6 +14,7 @@ function WorkoutCard({ workout }: WorkoutCard) {
         <div className='shadow rounded-lg h-96 p-6 border'>
             <h2>{workout_name}</h2>
             {workout_id}
+            <Link href={`/workouts/${workout_id}`}><Button variant={"outline"}>Öffnen</Button></Link>
         </div>
     )
 }
