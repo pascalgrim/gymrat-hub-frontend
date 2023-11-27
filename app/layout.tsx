@@ -22,10 +22,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <Providers>
           <Sidenav />
-          <div className='ml-60 pl-8'>
+          <div className='ml-60 pl-8 h-screen'>
             {children}
           </div>
           <Toaster />

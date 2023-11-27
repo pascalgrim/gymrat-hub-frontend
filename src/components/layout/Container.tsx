@@ -7,7 +7,7 @@ type ContainerProps = {
 }
 function Container({ children, ...props }: ContainerProps) {
     return (
-        <div className='h-full px-8 relative' {...props}>
+        <div className=' px-8 relative' {...props}>
             {children}
         </div>
     )

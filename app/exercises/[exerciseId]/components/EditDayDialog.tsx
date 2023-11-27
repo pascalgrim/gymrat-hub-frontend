@@ -40,9 +40,7 @@ function EditDayDialog({ exerciseId, day }: EditDayDialogProps) {
                         {day.Sets.map((set, i) => <SingleSet enableEditing key={i} index={i} set={set} day={day} />)}
                     </div>
                     <div className='flex flex-col mt-4 gap-2'>
-                        <DialogDescription>
-                            Füge einen neuen Satz hinzu
-                        </DialogDescription>
+
                         <AddSetForm exerciseId={exerciseId} />
                     </div>
                 </div>

@@ -10,7 +10,7 @@ function Section({ title, children, ...props }: SectionProps) {
     return (
         <div {...props}>
             <div className='flex flex-col gap-2'>
-                <div className='flex justify-between items-center mb-4'>
+                <div className='flex justify-between items-center my-2'>
                     <h2 className='font-semibold'>{title}</h2>
                     {/* <Button variant={"outline"}>Alle</Button> */}
                 </div>

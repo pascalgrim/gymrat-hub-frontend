@@ -90,4 +90,9 @@
   }
 }
 
-@layer components {}
+@layer components {
+
+  .card {
+    @apply border rounded-lg p-4
+  }
+}
