@@ -47,7 +47,7 @@ type ExerciseSet = {
   set_id: number;
   exercise_day_id: number;
   reps: number;
-  weight: Decimal;
+  weight: number;
   createdAt: Date;
   updated_at: Date;
 };

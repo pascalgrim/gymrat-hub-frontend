@@ -1,6 +1,6 @@
 "use client"
 import { ArrowDown, ArrowUp } from 'lucide-react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { calculateVolumn } from '../../../../util/calculateVolumn'
 import SingleSet from './SingleSet'
 import EditDayDialog from './EditDayDialog'
@@ -28,7 +28,7 @@ function ExerciseDayCard({ betterThanPrev = false, exerciseDay }: ExerciseDayCar
             <div className='overflow-auto flex flex-col gap-2 mt-2'>
                 {exerciseDay.Sets.map((set, i) => {
                     if (i < 10) {
-                        return (<SingleSet small index={i} set={set} key={i} day={exerciseDay} />)
+                        return (<SingleSet small index={i} set={set} key={set.set_id} day={exerciseDay} />)
                     }
                 })}
             </div>

@@ -26,7 +26,6 @@ function SingleSet({ set, day, index, enableEditing = false, small = false }: Si
     const [newWeight, setNewWeight] = useState(set.weight)
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter()
-
     const height = small ? "h-4" : "h-10"
     const iconSize = 18
     const textStyle = cn("w-14", height)
@@ -39,17 +38,18 @@ function SingleSet({ set, day, index, enableEditing = false, small = false }: Si
     }
 
     async function saveEdit() {
-        if (newReps === set.reps && newWeight === set.weight || newWeight < 0 || newReps < 0) {
+        if ((newReps === set.reps && newWeight === set.weight) || newWeight < 0 || newReps < 0) {
             return
         }
         setIsLoading(true)
-        await api.patch(`/set`, {
+        const res = await api.patch(`/set`, {
             setId: set.set_id,
             reps: newReps,
-            weight: newWeight
+            weight: +newWeight
         })
-        setNewReps(set.reps)
-        setNewWeight(set.weight)
+        const updatedSet = res.data
+        setNewReps(updatedSet.reps)
+        setNewWeight(updatedSet.weight)
         setIsLoading(false)
         router.refresh()
     }
