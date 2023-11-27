@@ -8,35 +8,35 @@ type ChartCardProps = React.HTMLAttributes<HTMLDivElement> & {
     exercise: Exercise;
 };
 
-const data = [
-    {
-        name: "09.11",
-        volumn: 1980
-    },
-    {
-        name: "07.11",
-        volumn: 1344
-    },
-    {
-        name: "01.11",
-        volumn: 1551
-    },
-    {
-        name: "01.11",
-        volumn: 1521
-    },
-    {
-        name: "01.11",
-        volumn: 1151
-    },
-    {
-        name: "01.11",
-        volumn: 1651
-    }, {
-        name: "01.11",
-        volumn: 1851
-    },
-]
+// const data = [
+//     {
+//         name: "09.11",
+//         volumn: 1980
+//     },
+//     {
+//         name: "07.11",
+//         volumn: 1344
+//     },
+//     {
+//         name: "01.11",
+//         volumn: 1551
+//     },
+//     {
+//         name: "01.11",
+//         volumn: 1521
+//     },
+//     {
+//         name: "01.11",
+//         volumn: 1151
+//     },
+//     {
+//         name: "01.11",
+//         volumn: 1651
+//     }, {
+//         name: "01.11",
+//         volumn: 1851
+//     },
+// ]
 type TChartData = {
     name: string,
     volumn: number
@@ -44,6 +44,12 @@ type TChartData = {
 
 function getData(exercise: Exercise) {
     var data: TChartData[] = []
+    const tmp = exercise.ExerciseDays
+    tmp.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        return dateA.getTime() - dateB.getTime();
+    })
     exercise.ExerciseDays.forEach((day) => {
         const volumn = calculateVolumn(day)
         data.push({
@@ -57,6 +63,7 @@ function ChartCard({ exercise, className, ...rest }: ChartCardProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
+    const data = getData(exercise)
     const padding = 8 * 4 * 2
     useEffect(() => {
         const handleResize = () => {

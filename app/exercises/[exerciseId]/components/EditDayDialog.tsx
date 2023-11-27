@@ -10,7 +10,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-import { Edit } from 'lucide-react'
+import { Pencil } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import SingleSet from './SingleSet'
 import AddSetForm from './AddSetForm'
@@ -27,7 +27,7 @@ function EditDayDialog({ exerciseId, day }: EditDayDialogProps) {
 
     return (
         <Dialog>
-            <DialogTrigger><Button size={"icon"} variant={"ghost"}><Edit size={24} /></Button></DialogTrigger>
+            <DialogTrigger><Button size={"icon"} variant={"ghost"}><Pencil size={20} /></Button></DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Sätze</DialogTitle>
@@ -35,14 +35,11 @@ function EditDayDialog({ exerciseId, day }: EditDayDialogProps) {
                         Bearbeite deine Sätze oder füge neue Sätze hinzu.
                     </DialogDescription>
                 </DialogHeader>
-                <div className='mt-4'>
+                <div className='mt-4 flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                         {day.Sets.map((set, i) => <SingleSet enableEditing key={i} index={i} set={set} day={day} />)}
                     </div>
-                    <div className='flex flex-col mt-4 gap-2'>
-
-                        <AddSetForm exerciseId={exerciseId} />
-                    </div>
+                    <AddSetForm exerciseId={exerciseId} disableHeader />
                 </div>
                 <DialogFooter>
                     <DialogDescription>

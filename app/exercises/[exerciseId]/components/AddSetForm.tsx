@@ -6,15 +6,18 @@ import React, { useState } from 'react'
 import { api } from '../../../../util/axios'
 import { useRouter } from 'next/navigation'
 import { Label } from '@/components/ui/label'
+import { toast, useToast } from '@/components/ui/use-toast'
 
 
 type AddSetFormProps = {
-    exerciseId: number
+    exerciseId: number,
+    disableHeader?: boolean
 }
-function AddSetForm({ exerciseId }: AddSetFormProps) {
+function AddSetForm({ exerciseId, disableHeader = false }: AddSetFormProps) {
     const [reps, setReps] = useState("")
     const [weight, setWeight] = useState("")
     const router = useRouter()
+    const { toast } = useToast()
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         if (+reps > 0 && +weight > 0) {
@@ -25,6 +28,10 @@ function AddSetForm({ exerciseId }: AddSetFormProps) {
                     weight: +weight
                 })
                 router.refresh()
+                toast({
+                    title: "Satz erfolgreich hinzugefügt",
+                    description: `${reps} x ${weight}Kg`,
+                })
             } catch (error: any) {
                 console.log(error)
             }
@@ -32,7 +39,7 @@ function AddSetForm({ exerciseId }: AddSetFormProps) {
     }
     return (
         <div className='card h-full flex flex-col justify-evenly items-center p-12 gap-4'>
-            <h3>Neuen Satz hinzufügen</h3>
+            {!disableHeader && <h3>Neuen Satz hinzufügen</h3>}
             <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-4'>
                 <div className='flex gap-2'>
                     <div>
