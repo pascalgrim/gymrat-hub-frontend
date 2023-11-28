@@ -8,6 +8,7 @@ import SidenavList from './SidenavList'
 import Logo from '@/components/logo'
 import { useAuthContext } from '../../../../hooks/auth/useAuthContext'
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 
 function Sidenav() {
@@ -25,9 +26,17 @@ function Sidenav() {
             </div>
             {/* DOWN */}
             <div className='flex items-center gap-2 w-full px-12 flex-col'>
-                {user?.email}
-                <DarkModeToggle />
-                <SignInButton className='' />
+                <div className='flex gap-2 items-center w-full'>
+                    <Avatar>
+                        <AvatarImage src="" />
+                        <AvatarFallback>{user?.username.slice(0, 1).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <div className='flex flex-col text-sm'>
+                        <span className=''>{user?.username}</span>
+                    </div>
+                </div>
+                {/* <DarkModeToggle />
+    <SignInButton className='' /> */}
             </div>
         </div>
     )

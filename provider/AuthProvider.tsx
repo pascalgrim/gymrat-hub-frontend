@@ -5,6 +5,7 @@ interface UserPayload {
     access_token: string;
     userId: number;
     email: string;
+    username: string
 }
 interface AuthState {
     user: UserPayload | null;

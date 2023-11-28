@@ -9,6 +9,7 @@ import { useAuthContext } from '../../../hooks/auth/useAuthContext'
 
 function WorkoutList() {
     const { state } = useAuthContext()
+    console.log("state", state)
     const userId = state.user?.userId
     const { data } = useQuery({
         queryKey: ["workouts"],
