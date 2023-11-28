@@ -3,5 +3,5 @@ export function calculateVolumn(exerciseDay: ExerciseDay) {
   exerciseDay.Sets.forEach((set) => {
     sum += set.reps * set.weight;
   });
-  return sum;
+  return Math.round(sum);
 }

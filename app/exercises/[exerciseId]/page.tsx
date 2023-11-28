@@ -9,6 +9,7 @@ import AddSetForm from './components/AddSetForm'
 import ExerciseDayCard from './components/ExerciseDayCard'
 import ChartCard from '@/components/charts/LineChart'
 import { cn } from '@/lib/utils'
+import { formatDate } from '../../../util/date'
 
 async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }) {
     const res = await api.get(`/exercise/${params.exerciseId}`)
@@ -30,7 +31,7 @@ async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }
 
                     </div>
                     <div className={cn('col-span-1')}>
-                        <AddSetForm exerciseId={+params.exerciseId} />
+                        <AddSetForm exerciseId={+params.exerciseId} date={formatDate(new Date())} />
                     </div>
                 </div>
                 <Section title='Sätze' className={cn('col-span-4')}>

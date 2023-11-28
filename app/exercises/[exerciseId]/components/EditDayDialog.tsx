@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button'
 import SingleSet from './SingleSet'
 import AddSetForm from './AddSetForm'
 import { calculateVolumn } from '../../../../util/calculateVolumn'
+import { formatDate } from '../../../../util/date'
 
 
 
@@ -39,7 +40,7 @@ function EditDayDialog({ exerciseId, day }: EditDayDialogProps) {
                     <div className='flex flex-col gap-2'>
                         {day.Sets.map((set, i) => <SingleSet enableEditing key={i} index={i} set={set} day={day} />)}
                     </div>
-                    <AddSetForm exerciseId={exerciseId} disableHeader />
+                    <AddSetForm exerciseId={exerciseId} disableHeader date={day.date} />
                 </div>
                 <DialogFooter>
                     <DialogDescription>
