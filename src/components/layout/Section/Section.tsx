@@ -3,15 +3,17 @@ import React from 'react'
 
 type SectionProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     title: string,
-    children: React.ReactNode
+    children: React.ReactNode,
+    button?: React.ReactNode
 }
 
-function Section({ title, children, ...props }: SectionProps) {
+function Section({ title, children, button, ...props }: SectionProps) {
     return (
         <div {...props}>
             <div className='flex flex-col gap-2'>
-                <div className='flex justify-between items-center my-2'>
+                <div className='flex justify-between items-center my-2 '>
                     <h2 className='font-semibold'>{title}</h2>
+                    {button}
                     {/* <Button variant={"outline"}>Alle</Button> */}
                 </div>
                 {children}

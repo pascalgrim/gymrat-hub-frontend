@@ -14,15 +14,13 @@ function ExerciseCard({ exercise }: ExerciseCardProps) {
         router.replace(`/exercises/${exercise.exercise_id}`)
     }
     return (
-        <div className='border rounded-lg p-4 flex flex-col justify-between '>
-            <div>
-                <div className='flex justify-between items-center'>
-                    <h3 className='font-semibold'>{exercise.exercise_name}</h3>
-                    <ChevronRight onClick={handleClick} className='cursor-pointer'></ChevronRight>
-                </div>
-                <span className='text-sm'>vor 3 Tagen</span>
+        <div className='border rounded-lg p-4 flex items-center justify-between '>
+
+            <div className='flex justify-between flex-col'>
+                <h3 className='font-semibold'>{exercise.exercise_name}</h3>
+                <span className='text-sm text-gray-400'>vor 3 Tagen</span>
             </div>
-            <MiniSetList className='mt-6' />
+            <ChevronRight onClick={handleClick} className='cursor-pointer'></ChevronRight>
         </div>
     )
 }
