@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import SignInButton from '../../auth/SignInButton'
 import DarkModeToggle from '../../ui/DarkModeToggle'
 import { useSelectedRoute } from '../../../../provider/SelectedRouteProvider'
@@ -9,17 +9,26 @@ import Logo from '@/components/logo'
 import { useAuthContext } from '../../../../hooks/auth/useAuthContext'
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from '@/components/ui/button'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { useSidenavState } from '../../../../provider/SidenavStateProvider'
+import { getSidenavWidth } from '../../../../lib/getSidenavWidth'
 
 
 function Sidenav() {
     const { state } = useAuthContext()
     const user = state.user
-
+    const { collapsed, setCollapsed } = useSidenavState()
     const { selectedRoute, setSelectedRoute } = useSelectedRoute()
+    const width = getSidenavWidth(collapsed)
     return (
-        <div className='w-60 fixed h-full flex flex-col justify-between items-center py-16 border-r '>
+        <div className={cn('fixed h-full flex flex-col justify-between items-center py-16 border-r z-20 ', width)}>
             {/* UP */}
 
+            <div className=' absolute -right-4 top-8 text-primary bg-secondary rounded-full p-2 flex justify-center items-center cursor-pointer transi' onClick={() => setCollapsed(!collapsed)}>
+                {collapsed ? <ChevronRight /> : <ChevronLeft />}
+            </div>
             <div className='w-full flex flex-col items-center'>
                 <Logo />
                 <SidenavList />
@@ -31,9 +40,10 @@ function Sidenav() {
                         <AvatarImage src="" />
                         <AvatarFallback>{user?.username.slice(0, 1).toUpperCase()}</AvatarFallback>
                     </Avatar>
-                    <div className='flex flex-col text-sm'>
+                    {!collapsed && <div className='flex flex-col text-sm'>
                         <span className=''>{user?.username}</span>
                     </div>
+                    }
                 </div>
                 {/* <DarkModeToggle />
     <SignInButton className='' /> */}

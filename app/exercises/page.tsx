@@ -9,7 +9,7 @@ import LargeExerciseList from './components/LargeExerciseList'
 async function ExercisesPage() {
 
     return (
-        <Container >
+        <Container>
             <TitleSection title='Übungen'></TitleSection>
             <LargeExerciseList />
         </Container>

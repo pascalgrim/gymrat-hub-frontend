@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { useSelectedRoute } from '../../../../provider/SelectedRouteProvider'
 import { cn } from '@/lib/utils'
+import { useSidenavState } from '../../../../provider/SidenavStateProvider'
 
 type SidenavItemProps = {
     route: Route
@@ -10,6 +11,7 @@ type SidenavItemProps = {
 function SidenavItem({ route }: SidenavItemProps) {
     const { selectedRoute, setSelectedRoute } = useSelectedRoute()
     const selected = selectedRoute.route === route.route
+    const { collapsed } = useSidenavState()
     function handleClick() {
         if (!selected) setSelectedRoute(route)
     }
@@ -20,9 +22,10 @@ function SidenavItem({ route }: SidenavItemProps) {
                 <div>
                     {route.icon}
                 </div>
-                <span>
+                {!collapsed && <span>
                     {route.name}
-                </span>
+                </span>}
+
             </div>
         </Link>
     )

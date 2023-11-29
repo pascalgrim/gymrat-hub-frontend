@@ -6,6 +6,8 @@ import './globals.css'
 import { Toaster } from "@/components/ui/toaster"
 import Sidenav from '@/components/layout/Sidenav/Sidenav'
 import Providers from './providers'
+import EmptyMarginHelper from '@/components/layout/EmptyMarginSidenavHelper'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,12 +22,14 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
+
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
         <Providers>
           <Sidenav />
-          <div className='ml-60 pl-8 h-screen'>
+          <div className='h-screen flex'>
+            <EmptyMarginHelper />
             {children}
           </div>
           <Toaster />

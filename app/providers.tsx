@@ -7,6 +7,7 @@ import {
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { AuthProvider } from '../provider/AuthProvider'
 import { SelectedRouteProvider } from '../provider/SelectedRouteProvider'
+import { SidenavStateProvider } from '../provider/SidenavStateProvider'
 
 function Providers({ children, ...props }: { children: React.ReactNode }) {
     const queryClient = new QueryClient()
@@ -18,7 +19,9 @@ function Providers({ children, ...props }: { children: React.ReactNode }) {
                 disableTransitionOnChange>
                 <QueryClientProvider client={queryClient}>
                     <SelectedRouteProvider>
-                        {children}
+                        <SidenavStateProvider>
+                            {children}
+                        </SidenavStateProvider>
                     </SelectedRouteProvider>
                 </QueryClientProvider>
             </NextThemesProvider>

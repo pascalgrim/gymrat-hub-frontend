@@ -7,7 +7,7 @@ type ContainerProps = {
 }
 function Container({ children, ...props }: ContainerProps) {
     return (
-        <div className=' px-8 relative' {...props}>
+        <div className='flex-1 px-8 relative' {...props}>
             {children}
         </div>
     )
