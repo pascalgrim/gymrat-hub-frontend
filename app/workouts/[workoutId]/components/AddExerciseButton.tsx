@@ -14,12 +14,17 @@ import { useAuthContext } from '../../../../hooks/auth/useAuthContext'
 import { useRouter } from 'next/navigation'
 import { api } from '../../../../util/axios'
 import { Input } from '@/components/ui/input'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import ExerciseCard from './ExerciseCard'
+
 
 
 type AddExerciseButtonProps = {
-    choosable?: boolean
+    choosable?: boolean,
+    exercises?: Exercise[],
+    workoutId?: number
 }
-function AddExerciseButton({ choosable = false }: AddExerciseButtonProps) {
+function AddExerciseButton({ choosable = false, exercises, workoutId }: AddExerciseButtonProps) {
     const [name, setName] = useState("")
     const { state } = useAuthContext()
     const router = useRouter()
@@ -27,11 +32,19 @@ function AddExerciseButton({ choosable = false }: AddExerciseButtonProps) {
         e.preventDefault()
         if (name.length < 1) return
         try {
-            const res = await api.post("/exercise", {
-                userId: state.user?.userId,
-                exerciseName: name,
-
-            })
+            let res
+            if (workoutId) {
+                res = await api.post("/exercise/workout", {
+                    userId: state.user?.userId,
+                    exerciseName: name,
+                    workoutId
+                })
+            } else {
+                res = await api.post("/exercise", {
+                    userId: state.user?.userId,
+                    exerciseName: name,
+                })
+            }
             if (res.status === 201) {
                 router.push(`/exercises/${res.data.exercise_id}`)
             }
@@ -48,6 +61,7 @@ function AddExerciseButton({ choosable = false }: AddExerciseButtonProps) {
     </form>
 
     const heading = choosable ? "Übung hinzufügen" : "Übung erstellen"
+
     return (
         <Dialog>
             <DialogTrigger asChild><Button>{heading}</Button></DialogTrigger>
@@ -58,9 +72,24 @@ function AddExerciseButton({ choosable = false }: AddExerciseButtonProps) {
                         Name der Übung eingeben
                     </DialogDescription>
                 </DialogHeader>
-                {choosable ? <></> : newExerciseForm}
+                <div className=''>
+                    {choosable ?
+                        <Tabs defaultValue="select" className="">
+                            <TabsList className='justify-self-center flex'>
+                                <TabsTrigger value="select" className='w-fit'>Übung auswählen</TabsTrigger>
+                                <TabsTrigger value="create" className='w-fit'>Übung erstellen</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="select">
+                                <div>
+                                    {exercises?.map(exercise => <ExerciseCard exercise={exercise} key={exercise.exercise_id} />)}
+                                </div>
+                            </TabsContent>
+                            <TabsContent value="create">{newExerciseForm}</TabsContent>
+                        </Tabs>
+                        :
+                        newExerciseForm}
 
-
+                </div>
             </DialogContent>
         </Dialog>
     )

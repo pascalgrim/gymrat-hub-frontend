@@ -10,7 +10,7 @@ type Workout = {
   user_id: number;
   created_at: Date;
   updated_at: Date;
-  Exercises: Exercise[];
+  exercises: ExerciseInWorkout[];
 };
 
 type User = {
@@ -32,6 +32,7 @@ type Exercise = {
   updated_at: Date;
   workout_id: number;
   ExerciseDays: ExerciseDay[];
+  workouts: Workout[];
 };
 
 type ExerciseDay = {
@@ -50,4 +51,10 @@ type ExerciseSet = {
   weight: number;
   createdAt: Date;
   updated_at: Date;
+};
+
+type ExerciseInWorkout = {
+  exercise_id: number;
+  workout_id: number;
+  exercise: Exercise;
 };

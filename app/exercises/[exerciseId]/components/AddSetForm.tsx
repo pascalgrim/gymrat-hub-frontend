@@ -24,7 +24,7 @@ function AddSetForm({ exerciseId, disableHeader = false, date }: AddSetFormProps
         e.preventDefault()
         if (+reps > 0 && +weight > 0) {
             try {
-                await api.post("/set", {
+                const res = await api.post("/set", {
                     exerciseId: exerciseId,
                     reps: +reps,
                     weight: +weight,

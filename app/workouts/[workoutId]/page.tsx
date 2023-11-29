@@ -3,6 +3,7 @@ import TitleSection from '@/components/layout/TitleSection'
 import React from 'react'
 import { api } from '../../../util/axios'
 import ExerciseList from './components/ExerciseList'
+import { extractExercisesFromWorkoutObject } from '../../../lib/extractExercisesFromWorkoutObject'
 
 async function WorkoutDetailPage({ params }: {
   params: {
@@ -11,12 +12,14 @@ async function WorkoutDetailPage({ params }: {
 }) {
   const res = await api.get(`/workout/${params.workoutId}`)
   const workout: Workout = res.data
+  const exercises = extractExercisesFromWorkoutObject(workout)
+
   return (
     <Container>
       <TitleSection title={workout.workout_name}>
       </TitleSection>
       <div>
-        <ExerciseList exercises={workout.Exercises} />
+        <ExerciseList exercises={exercises} choosable workoutId={workout.workout_id} />
       </div>
     </Container>
   )
