@@ -16,28 +16,33 @@ import { api } from '../../../../util/axios'
 import { Input } from '@/components/ui/input'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ExerciseCard from './ExerciseCard'
+import ExerciseAdder from './ExerciseAdder'
+import { extractExercisesFromWorkoutObject } from '../../../../lib/extractExercisesFromWorkoutObject'
 
 
 
 type AddExerciseButtonProps = {
     choosable?: boolean,
-    exercises?: Exercise[],
-    workoutId?: number
+    workout?: Workout
 }
-function AddExerciseButton({ choosable = false, exercises, workoutId }: AddExerciseButtonProps) {
+
+
+
+function AddExerciseButton({ choosable = false, workout }: AddExerciseButtonProps) {
     const [name, setName] = useState("")
     const { state } = useAuthContext()
     const router = useRouter()
+    const exercises = workout && extractExercisesFromWorkoutObject(workout)
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         if (name.length < 1) return
         try {
             let res
-            if (workoutId) {
+            if (workout) {
                 res = await api.post("/exercise/workout", {
                     userId: state.user?.userId,
                     exerciseName: name,
-                    workoutId
+                    workoutId: workout.workout_id
                 })
             } else {
                 res = await api.post("/exercise", {
@@ -55,10 +60,11 @@ function AddExerciseButton({ choosable = false, exercises, workoutId }: AddExerc
     }
 
 
-    const newExerciseForm = <form className="flex flex-col items-end gap-4" onSubmit={(e) => handleSubmit(e)}>
-        <Input value={name} onChange={(e) => setName(e.target.value)} placeholder='Squats' />
-        <Button>Erstellen</Button>
-    </form>
+    const newExerciseForm =
+        <form className="flex flex-col items-end gap-4" onSubmit={(e) => handleSubmit(e)}>
+            <Input value={name} onChange={(e) => setName(e.target.value)} placeholder='Squats' />
+            <Button>Erstellen</Button>
+        </form>
 
     const heading = choosable ? "Übung hinzufügen" : "Übung erstellen"
 
@@ -73,21 +79,17 @@ function AddExerciseButton({ choosable = false, exercises, workoutId }: AddExerc
                     </DialogDescription>
                 </DialogHeader>
                 <div className=''>
-                    {choosable ?
-                        <Tabs defaultValue="select" className="">
-                            <TabsList className='justify-self-center flex'>
-                                <TabsTrigger value="select" className='w-fit'>Übung auswählen</TabsTrigger>
-                                <TabsTrigger value="create" className='w-fit'>Übung erstellen</TabsTrigger>
-                            </TabsList>
-                            <TabsContent value="select">
-                                <div>
-                                    {exercises?.map(exercise => <ExerciseCard exercise={exercise} key={exercise.exercise_id} />)}
-                                </div>
-                            </TabsContent>
-                            <TabsContent value="create">{newExerciseForm}</TabsContent>
-                        </Tabs>
+                    {choosable && exercises ?
+                        <div>
+                            <ExerciseAdder workout={workout} />
+                            <form className="flex mt-4 gap-2" onSubmit={(e) => handleSubmit(e)}>
+                                <Input value={name} onChange={(e) => setName(e.target.value)} placeholder='Neue Übung erstellen' />
+                                <Button>Erstellen</Button>
+                            </form>
+                        </div>
                         :
-                        newExerciseForm}
+                        newExerciseForm
+                    }
 
                 </div>
             </DialogContent>

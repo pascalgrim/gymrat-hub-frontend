@@ -11,11 +11,9 @@ function WorkoutCard({ workout }: WorkoutCard) {
     const { created_at, updated_at, user_id, workout_id, workout_name } = workout
 
     return (
-        <div className='shadow rounded-lg h-96 p-6 border'>
+        <Link href={`/workouts/${workout_id}`} className='h-96 card flex justify-center items-center'>
             <h2>{workout_name}</h2>
-            {workout_id}
-            <Link href={`/workouts/${workout_id}`}><Button variant={"outline"}>Öffnen</Button></Link>
-        </div>
+        </Link>
     )
 }
 

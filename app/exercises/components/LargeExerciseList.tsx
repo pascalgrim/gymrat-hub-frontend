@@ -16,6 +16,7 @@ type LargeExerciseListProps = {
 function LargeExerciseList() {
     const { state } = useAuthContext()
     const userId = state.user?.userId
+    if (!userId) return <></>
     const { data } = useQuery({
         queryKey: ["exercises"],
         queryFn: () => getExercises(userId)

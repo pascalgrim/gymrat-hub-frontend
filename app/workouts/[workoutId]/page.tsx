@@ -12,14 +12,14 @@ async function WorkoutDetailPage({ params }: {
 }) {
   const res = await api.get(`/workout/${params.workoutId}`)
   const workout: Workout = res.data
-  const exercises = extractExercisesFromWorkoutObject(workout)
+
 
   return (
     <Container>
       <TitleSection title={workout.workout_name}>
       </TitleSection>
       <div>
-        <ExerciseList exercises={exercises} choosable workoutId={workout.workout_id} />
+        <ExerciseList choosable workout={workout} />
       </div>
     </Container>
   )

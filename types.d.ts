@@ -30,7 +30,6 @@ type Exercise = {
   user_id: number;
   created_at: Date;
   updated_at: Date;
-  workout_id: number;
   ExerciseDays: ExerciseDay[];
   workouts: Workout[];
 };
