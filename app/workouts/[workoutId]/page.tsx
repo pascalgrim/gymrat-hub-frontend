@@ -4,6 +4,7 @@ import React from 'react'
 import { api } from '../../../util/axios'
 import ExerciseList from './components/ExerciseList'
 import { extractExercisesFromWorkoutObject } from '../../../lib/extractExercisesFromWorkoutObject'
+import WorkoutDropdown from '../components/WorkoutOptions'
 
 async function WorkoutDetailPage({ params }: {
   params: {
@@ -17,6 +18,7 @@ async function WorkoutDetailPage({ params }: {
   return (
     <Container>
       <TitleSection title={workout.workout_name}>
+        <WorkoutDropdown workout={workout} />
       </TitleSection>
       <div>
         <ExerciseList choosable workout={workout} />

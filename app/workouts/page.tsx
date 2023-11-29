@@ -8,11 +8,12 @@ import NewWorkoutButton from './components/NewWorkoutButton'
 
 
 
+
 async function WorkoutPage() {
     return (
         <Container>
             <TitleSection title='Workouts'>
-                <NewWorkoutButton/>
+                <NewWorkoutButton />
             </TitleSection>
             <WorkoutList />
         </Container>
