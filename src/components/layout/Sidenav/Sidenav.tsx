@@ -23,7 +23,7 @@ function Sidenav() {
     const { selectedRoute, setSelectedRoute } = useSelectedRoute()
     const width = getSidenavWidth(collapsed)
     return (
-        <div className={cn('fixed h-full flex flex-col justify-between items-center py-16 border-r z-20 ', width)}>
+        <div className={cn('fixed h-full md:flex flex-col justify-between items-center py-16 border-r z-20 sm:hidden', width)}>
             {/* UP */}
 
             <div className=' absolute -right-4 top-8 text-primary bg-secondary rounded-full p-2 flex justify-center items-center cursor-pointer transi' onClick={() => setCollapsed(!collapsed)}>

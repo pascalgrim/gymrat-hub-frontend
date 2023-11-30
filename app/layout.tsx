@@ -28,8 +28,8 @@ export default async function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <Providers>
           <Sidenav />
-          <div className='h-screen flex'>
-            <EmptyMarginHelper />
+          <div className='h-screen flex '>
+            {/* <EmptyMarginHelper /> */}
             {children}
           </div>
           <Toaster />

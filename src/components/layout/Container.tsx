@@ -1,13 +1,11 @@
-import { chdir } from 'process'
 import React from 'react'
-import TitleSection from './TitleSection'
 
 type ContainerProps = {
     children: React.ReactNode
 }
 function Container({ children, ...props }: ContainerProps) {
     return (
-        <div className='flex-1 px-8 relative' {...props}>
+        <div className='flex-1 px-8 relative ml-60 ' {...props}>
             {children}
         </div>
     )

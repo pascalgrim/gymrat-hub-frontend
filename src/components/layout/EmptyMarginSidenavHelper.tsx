@@ -9,7 +9,7 @@ function EmptyMarginHelper() {
 
     const width = getSidenavWidth(collapsed)
     return (
-        <div className={cn("", width)} />
+        <div className={cn("", width)}></div>
     )
 }
 
