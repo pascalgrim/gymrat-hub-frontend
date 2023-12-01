@@ -7,7 +7,7 @@ type SidenavListProps = {
 }
 function SidenavList({ }: SidenavListProps) {
     return (
-        <div className='mt-12 w-full flex flex-col items-center justify-center'>
+        <div className='w-full flex flex-col items-center justify-center'>
             {routes.map(route => <SidenavItem route={route} key={route.name} />)}
         </div>
     )

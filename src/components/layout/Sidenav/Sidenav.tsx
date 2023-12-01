@@ -16,24 +16,24 @@ import { useSidenavState } from '../../../../provider/SidenavStateProvider'
 import { getSidenavWidth } from '../../../../lib/getSidenavWidth'
 
 
-function Sidenav() {
+function Sidenav({ width }: { width: string }) {
     const { state } = useAuthContext()
     const user = state.user
     const { collapsed, setCollapsed } = useSidenavState()
     const { selectedRoute, setSelectedRoute } = useSelectedRoute()
-    const width = getSidenavWidth(collapsed)
+    // const width = getSidenavWidth(collapsed)
     return (
-        <div className={cn('fixed h-full md:flex flex-col justify-between items-center py-16 border-r z-20 hidden')}>
+        <div className={cn('fixed h-full md:flex flex-col justify-between items-center py-16 border-r z-20 hidden', width)}>
             {/* UP */}
             <div className=' absolute -right-4 top-8 text-primary bg-secondary rounded-full p-2 flex justify-center items-center cursor-pointer transi' onClick={() => setCollapsed(!collapsed)}>
                 {collapsed ? <ChevronRight /> : <ChevronLeft />}
             </div>
-            <div className='w-full flex flex-col items-center'>
+            <div className='w-full flex flex-col items-center gap-12'>
                 <Logo />
                 <SidenavList />
             </div>
             {/* DOWN */}
-            <div className='flex items-center gap-2 w-full px-12 flex-col'>
+            <div className='flex items-center gap-2 w-full px-12 flex-col '>
                 <div className='flex gap-2 items-center w-full'>
                     <Avatar>
                         <AvatarImage src="" />
@@ -44,8 +44,8 @@ function Sidenav() {
                     </div>
                     }
                 </div>
-                {/* <DarkModeToggle />
-    <SignInButton className='' /> */}
+                <DarkModeToggle />
+                <SignInButton className='' />
             </div>
         </div>
     )

@@ -9,7 +9,7 @@ function SidenavContainer() {
     const width = collapsed ? "w-40" : "w-60"
     return (
         <div className={cn("hidden md:flex", width)}>
-            <Sidenav />
+            <Sidenav width={width} />
             <div className='w-full' />
         </div>
     )

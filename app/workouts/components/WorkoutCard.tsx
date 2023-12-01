@@ -14,7 +14,7 @@ function WorkoutCard({ workout }: WorkoutCard) {
 
 
     return (
-        <Link href={`/workouts/${workout_id}`} className='h-96 card flex flex-col justify-between items-center relative cursor-pointer '>
+        <Link href={`/workouts/${workout_id}`} className=' card flex flex-col justify-between items-center relative cursor-pointer '>
             <div className='w-full'>
                 <Image width={1920} height={1080} src="/workout1.jpg" alt="" className='aspect-video w-full' />
             </div>
@@ -26,10 +26,6 @@ function WorkoutCard({ workout }: WorkoutCard) {
                         <h4>Zuletzt {formatRelativeDate(new Date(updated_at))}</h4>
                     </div>
                 </div>
-                {/* 
-                <Link href={`/workouts/${workout_id}`} className=''>
-                    <Button variant={"outline"}>Öffnen</Button>
-                </Link> */}
             </div>
         </Link>
     )

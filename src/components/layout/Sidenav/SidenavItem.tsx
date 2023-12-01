@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { useSidenavState } from '../../../../provider/SidenavStateProvider'
 
 type SidenavItemProps = {
-    route: Route
+    route: Route,
 }
 
 function SidenavItem({ route }: SidenavItemProps) {

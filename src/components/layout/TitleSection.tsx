@@ -1,4 +1,12 @@
-import React from 'react'
+"use client"
+import { Menu, Sidebar, X } from 'lucide-react'
+import React, { useState } from 'react'
+import { cn } from '@/lib/utils'
+import Sidenav from './Sidenav/Sidenav'
+import SidenavList from './Sidenav/SidenavList'
+import { routes } from '@/data/routes'
+import SidenavItem from './Sidenav/SidenavItem'
+import BurgerMenu from './BurgerMenu'
 
 type TitleSectionProps = {
   title?: string,
@@ -6,14 +14,29 @@ type TitleSectionProps = {
 }
 
 function TitleSection({ title, children }: TitleSectionProps) {
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const menuIconStyle = 'block md:hidden cursor-pointer'
+  function handleMenuClick() {
+    setMenuIsOpen(!menuIsOpen)
+  }
+
   return (
-    <div className='flex justify-between items-center bg-background z-10 py-16 sticky top-0'>
-      <h1 className=''>{title}</h1>
-      <div>
-        {children}
+    <div className={cn('flex flex-col')}>
+      <div className='flex justify-between items-center bg-background z-10 h-40 sticky top-0'>
+        <div className='flex gap-4 items-center'>
+          {menuIsOpen ? <X size={32} className={menuIconStyle} onClick={handleMenuClick} /> : <Menu size={32} className={menuIconStyle} onClick={handleMenuClick} />}
+          <h1 className=''>{title}</h1>
+        </div>
+        <div>
+          {children}
+        </div>
       </div>
+      {menuIsOpen &&
+        <BurgerMenu />
+      }
     </div>
   )
+
 }
 
 export default TitleSection

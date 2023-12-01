@@ -22,7 +22,7 @@ export const routes: Route[] = [{
 },
 {
     route: "settings",
-    name: "Settings",
+    name: "Einstellungen",
     icon: <Settings />
 },
 ]
