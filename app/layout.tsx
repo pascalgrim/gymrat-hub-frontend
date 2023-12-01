@@ -6,7 +6,7 @@ import './globals.css'
 import { Toaster } from "@/components/ui/toaster"
 import Sidenav from '@/components/layout/Sidenav/Sidenav'
 import Providers from './providers'
-import EmptyMarginHelper from '@/components/layout/EmptyMarginSidenavHelper'
+import SidenavContainer from '@/components/layout/Sidenav/SidenavContainer'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -27,9 +27,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
         <Providers>
-          <Sidenav />
           <div className='h-screen flex '>
-            {/* <EmptyMarginHelper /> */}
+            <SidenavContainer />
             {children}
           </div>
           <Toaster />
