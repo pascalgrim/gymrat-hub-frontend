@@ -16,20 +16,18 @@ function ExerciseDayCard({ betterThanPrev = false, exerciseDay }: ExerciseDayCar
         <div className='border p-6 rounded-lg flex flex-col justify-between h-96'>
             <div className='flex justify-between items-start'>
                 <div className='flex flex-col'>
-                    <h3 className='text-lg'>Volumen</h3>
+                    <h3 className='text-sm'>Volumen</h3>
                     <div className='flex items-center gap-1'>
-                        <h2 className='text-2xl font-bold'>{calculateVolumn(exerciseDay)}</h2>
-                        {arrow}
+                        <h2 className='text-xl font-bold'>{calculateVolumn(exerciseDay)}</h2>
+                        {/* {arrow} */}
                     </div>
-                    <p>{exerciseDay.date}</p>
+                    <p className='text-sm'>{exerciseDay.date}</p>
                 </div>
                 <EditDayDialog exerciseId={exerciseDay.exercise_id} day={exerciseDay} />
             </div>
-            <div className='overflow-auto flex flex-col gap-2 mt-2'>
+            <div className='overflow-auto flex flex-col gap-2 mt-2 '>
                 {exerciseDay.Sets.map((set, i) => {
-                    if (i < 10) {
-                        return (<SingleSet small index={i} set={set} key={set.set_id} day={exerciseDay} />)
-                    }
+                    return (<SingleSet small index={i} set={set} key={set.set_id} day={exerciseDay} />)
                 })}
             </div>
         </div>

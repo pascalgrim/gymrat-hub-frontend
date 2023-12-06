@@ -18,6 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ExerciseCard from './ExerciseCard'
 import ExerciseAdder from './ExerciseAdder'
 import { extractExercisesFromWorkoutObject } from '../../../../lib/extractExercisesFromWorkoutObject'
+import MuscleSelector from '../../components/MuscleSelector'
 
 
 
@@ -67,6 +68,7 @@ function AddExerciseButton({ choosable = false, workout }: AddExerciseButtonProp
         </form>
 
     const heading = choosable ? "Übung hinzufügen" : "Übung erstellen"
+    const [selectedMuscles, setSelectedMuscles] = useState<string[]>([])
 
     return (
         <Dialog>
@@ -84,6 +86,7 @@ function AddExerciseButton({ choosable = false, workout }: AddExerciseButtonProp
                             <ExerciseAdder workout={workout} />
                             <form className="flex mt-4 gap-2" onSubmit={(e) => handleSubmit(e)}>
                                 <Input value={name} onChange={(e) => setName(e.target.value)} placeholder='Neue Übung erstellen' />
+                                {/* <MuscleSelector selectedMusclegroups={selectedMuscles} setSelectedMusclegroups={setSelectedMuscles} /> */}
                                 <Button>Erstellen</Button>
                             </form>
                         </div>

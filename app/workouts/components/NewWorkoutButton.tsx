@@ -16,10 +16,13 @@ import { api } from '../../../util/axios'
 import { useAuthContext } from '../../../hooks/auth/useAuthContext'
 import { useRouter } from 'next/navigation'
 
+
+
 function NewWorkoutButton() {
   const [name, setName] = useState("")
   const { state } = useAuthContext()
   const router = useRouter()
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (name.length < 1) return
@@ -45,9 +48,11 @@ function NewWorkoutButton() {
             Name des Workouts eingeben
           </DialogDescription>
         </DialogHeader>
-        <form className="flex flex-col items-end gap-4" onSubmit={(e) => handleSubmit(e)}>
+        <form className="flex flex-col  gap-4" onSubmit={(e) => handleSubmit(e)}>
           <Input value={name} onChange={(e) => setName(e.target.value)} placeholder='Mein Beinworkout' />
+
           <Button>Erstellen</Button>
+
         </form>
 
       </DialogContent>

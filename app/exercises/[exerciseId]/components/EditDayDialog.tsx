@@ -28,7 +28,7 @@ function EditDayDialog({ exerciseId, day }: EditDayDialogProps) {
 
     return (
         <Dialog>
-            <DialogTrigger><Button size={"icon"} variant={"ghost"}><Pencil size={20} /></Button></DialogTrigger>
+            <DialogTrigger><Button size={"icon"} variant={"ghost"}><Pencil size={18} /></Button></DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Sätze</DialogTitle>

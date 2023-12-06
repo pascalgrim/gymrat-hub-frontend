@@ -95,7 +95,7 @@ function SingleSet({ set, day, index, enableEditing = false, small = false }: Si
     }
     return (
         <div className='flex items-center gap-4 '>
-            <div className='flex flex-1 justify-between items-center p-4 border rounded-lg  '>
+            <div className='flex flex-1 justify-between items-center p-4 border-b '>
                 <p className={pTagStyle}>{index + 1}</p>
                 {isEditable ?
                     <>

@@ -6,6 +6,7 @@ import React from 'react'
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
 import { useLogin } from '../../hooks/auth/useLogin'
+import Link from 'next/link'
 
 
 function SignInForm() {
@@ -49,6 +50,7 @@ function SignInForm() {
 
                 <Button type="submit" className='mt-4 col-span-2'>Einloggen</Button>
             </form>
+            <Link href={"/signup"}><Button variant={"link"} className='text-white'>Registrieren</Button></Link>
         </div>
 
     )

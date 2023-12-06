@@ -3,6 +3,7 @@ import { ChevronRight } from 'lucide-react'
 import React from 'react'
 import MiniSetList from './MiniSetList'
 import { useRouter } from 'next/navigation'
+import { formatRelativeDate } from '../../../../util/date'
 
 type ExerciseCardProps = {
     exercise: Exercise
@@ -18,7 +19,7 @@ function ExerciseCard({ exercise }: ExerciseCardProps) {
 
             <div className='flex justify-between flex-col'>
                 <h3 className='font-semibold'>{exercise.exercise_name}</h3>
-                <span className='text-sm text-gray-400'>vor 3 Tagen</span>
+                <span className='text-sm text-gray-400'>{formatRelativeDate(new Date(exercise.updated_at))}</span>
             </div>
             <ChevronRight onClick={handleClick} className='cursor-pointer'></ChevronRight>
         </div>

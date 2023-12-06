@@ -12,7 +12,7 @@ function Section({ title, children, button, ...props }: SectionProps) {
         <div {...props}>
             <div className='flex flex-col gap-2'>
                 <div className='flex justify-between items-center my-2 '>
-                    <h2 className='font-semibold'>{title}</h2>
+                    <h2 className='text-lg'>{title}</h2>
                     {button}
                     {/* <Button variant={"outline"}>Alle</Button> */}
                 </div>

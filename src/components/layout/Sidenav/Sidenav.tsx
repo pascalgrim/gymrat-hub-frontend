@@ -22,6 +22,7 @@ function Sidenav({ width }: { width: string }) {
     const { collapsed, setCollapsed } = useSidenavState()
     const { selectedRoute, setSelectedRoute } = useSelectedRoute()
     // const width = getSidenavWidth(collapsed)
+    const flex = user ? "" : "flex-col"
     return (
         <div className={cn('fixed h-full md:flex flex-col justify-between items-center py-16 border-r z-20 hidden', width)}>
             {/* UP */}
@@ -33,19 +34,22 @@ function Sidenav({ width }: { width: string }) {
                 <SidenavList />
             </div>
             {/* DOWN */}
-            <div className='flex items-center gap-2 w-full px-12 flex-col '>
-                <div className='flex gap-2 items-center w-full'>
-                    <Avatar>
+            <div className={cn('flex items-center gap-2 w-full px-12', flex)}>
+                <div className='flex gap-2 items-center w-full justify-center '>
+                    {user && <Avatar className=''>
                         <AvatarImage src="" />
                         <AvatarFallback>{user?.username.slice(0, 1).toUpperCase()}</AvatarFallback>
-                    </Avatar>
-                    {!collapsed && <div className='flex flex-col text-sm'>
-                        <span className=''>{user?.username}</span>
-                    </div>
+                    </Avatar>}
+
+                    {!collapsed &&
+                        <div className='flex flex-col text-sm'>
+                            <span className=''>{user?.username}</span>
+
+                        </div>
                     }
                 </div>
-                <DarkModeToggle />
-                <SignInButton className='' />
+
+                <SignInButton className='w-full' />
             </div>
         </div>
     )

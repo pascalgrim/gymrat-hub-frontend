@@ -81,7 +81,7 @@ function ChartCard({ exercise, className, ...rest }: ChartCardProps) {
     const minVolumn = Math.min(...data.map((entry) => entry.volumn)) - 100;
     return (
         <div ref={ref} className={cn(`card`, className)} {...rest} suppressHydrationWarning>
-            <h3 className='font-semibold'>Fortschritt</h3>
+            <h4 className=''>Fortschritt</h4>
             <AreaChart width={width} height={height} data={data}
             >
                 <defs>
