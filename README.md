@@ -1,6 +1,7 @@
 # Gymrat Hub Frontend App
 
-This is the frontend application for Gymrat Hub, a web application for fitness enthusiasts, created with Next.js. (Work in Progress)
+A frontend application for Gymrat Hub, a web application for fitness enthusiasts, created with Next.js. (Work in Progress)
+The backend can be found [here](https://github.com/pascalgrim/gymrat-hub-backend)
 
 ## Features
 
