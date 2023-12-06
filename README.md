@@ -12,7 +12,7 @@ This is the frontend application for Gymrat Hub, a web application for fitness e
 
 ## Preview
 
-![Gymrat Hub in Action](/path/to/your/gif.gif)
+![Gymrat Hub in Action](/example/example.gif)
 
 ## Installation
 
