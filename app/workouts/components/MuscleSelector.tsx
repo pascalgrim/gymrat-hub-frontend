@@ -30,18 +30,15 @@ export default MuscleSelector
 function Muscle({ muscle, selectedMusclegroup, setSelectedMusclegroup }: { muscle: string, selectedMusclegroup: string[], setSelectedMusclegroup: React.Dispatch<React.SetStateAction<string[]>> }) {
     const [isActive, setIsActive] = useState(false)
     function handleClick() {
-        setIsActive(!isActive)
-        if (isActive) {
+        if (!isActive) {
             setSelectedMusclegroup(prev => [...prev, muscle])
         } else {
             const idx = selectedMusclegroup.indexOf(muscle)
             const tmp = selectedMusclegroup
             tmp.splice(idx, 1)
+            setSelectedMusclegroup(tmp)
         }
-        // const inArray = selected.includes(muscle)
-        // if (!inArray) {
-        //     setSelected(prev => [...prev, muscle])
-        // }
+        setIsActive(!isActive)
 
     }
     return (<div className={cn('rounded-lg px-3 py-2 text-sm cursor-pointer', isActive ? "bg-white text-black" : "bg-card text-white")} onClick={handleClick}>{muscle}</div>)

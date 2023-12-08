@@ -14,15 +14,16 @@ function WorkoutCard({ workout }: WorkoutCard) {
 
 
     return (
-        <Link href={`/workouts/${workout_id}`} className='card flex flex-col justify-between items-center cursor-pointer relative  '>
+        <Link href={`/workouts/${workout_id}`} className='transition card flex flex-col justify-between items-center cursor-pointer relative bg-card hover:scale-105  '>
             <div className='w-full '>
                 <Image width={1024} height={1024} src="/backWorkout.png" alt="" className=' w-full object-cover h-40 object-top  ' />
             </div>
 
-            <div className='flex flex-col w-full pt-4'>
+            <div className='flex flex-col w-full pt-4 '>
                 <div className='text-sm'>Workout</div>
                 <h3 className='font-bold'>{workout_name}</h3>
                 <h4 className='text-sm'>Zuletzt {formatRelativeDate(new Date(updated_at))}</h4>
+                <h4 className='text-sm'>{workout.exercises === undefined ? 0 : workout.exercises.length} Übungen</h4>
             </div>
 
         </Link>

@@ -4,6 +4,7 @@ import React from 'react'
 import MiniSetList from './MiniSetList'
 import { useRouter } from 'next/navigation'
 import { formatRelativeDate } from '../../../../util/date'
+import Image from 'next/image'
 
 type ExerciseCardProps = {
     exercise: Exercise
@@ -15,13 +16,17 @@ function ExerciseCard({ exercise }: ExerciseCardProps) {
         router.replace(`/exercises/${exercise.exercise_id}`)
     }
     return (
-        <div className='border rounded-lg p-4 flex items-center justify-between '>
+        <div className='border rounded-lg flex flex-col items-center justify-between bg-card  hover:scale-105 cursor-pointer transition'>
+            <Image src={"/backWorkout.png"} alt="" width={9999} height={9999} className='w-full object-cover h-40 object-top rounded-lg' />
 
-            <div className='flex justify-between flex-col'>
-                <h3 className='font-semibold'>{exercise.exercise_name}</h3>
-                <span className='text-sm text-gray-400'>{formatRelativeDate(new Date(exercise.updated_at))}</span>
+            <div className='flex justify-between w-full p-4 items-end'>
+                <div className='flex justify-between flex-col'>
+                    <h3 className='font-semibold'>{exercise.exercise_name}</h3>
+
+                    <span className='text-sm text-gray-400'>{formatRelativeDate(new Date(exercise.updated_at))}</span>
+                </div>
+                <ChevronRight onClick={handleClick} className='cursor-pointer'></ChevronRight>
             </div>
-            <ChevronRight onClick={handleClick} className='cursor-pointer'></ChevronRight>
         </div>
     )
 }

@@ -29,7 +29,7 @@ async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }
             <div className={cn('grid grid-cols-4', gap)}>
                 <div className={cn('grid grid-cols-4 col-span-4 h-80', gap)}>
                     <ChartCard exercise={exercise} className={cn('col-span-2', gap)} />
-                    <div className={cn('col-span-1 grid grid-rows-2 ', gap)}>
+                    <div className={cn('col-span-1 grid grid-rows-2', gap)}>
                         <StatCard title='Maximales Gewicht' value={getMaxWeight(exercise).toString() + " Kg"} />
                         <StatCard title='Maximales Volumen' value={getMaxVolumn(exercise).toString()} />
 

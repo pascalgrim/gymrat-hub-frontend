@@ -57,3 +57,13 @@ type ExerciseInWorkout = {
   workout_id: number;
   exercise: Exercise;
 };
+
+type MuscleGroup =
+  | "Brust"
+  | "Ruecken"
+  | "Beine"
+  | "Schultern"
+  | "Bizeps"
+  | "Trizeps"
+  | "Po"
+  | "Bauchn";

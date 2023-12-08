@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { Label } from '@/components/ui/label'
 import { toast, useToast } from '@/components/ui/use-toast'
 import { formatDate } from '../../../../util/date'
+import { cn } from '@/lib/utils'
 
 
 type AddSetFormProps = {
@@ -41,7 +42,7 @@ function AddSetForm({ exerciseId, disableHeader = false, date }: AddSetFormProps
         }
     }
     return (
-        <div className='card h-full flex flex-col justify-evenly items-center p-12 gap-4'>
+        <div className={cn(' h-full flex flex-col justify-evenly items-center p-12 gap-4', !disableHeader && "card")}>
             {!disableHeader && <h3>Neuen Satz hinzufügen</h3>}
             <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-4'>
                 <div className='flex gap-2'>

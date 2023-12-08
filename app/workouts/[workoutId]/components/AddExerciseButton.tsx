@@ -19,6 +19,7 @@ import ExerciseCard from './ExerciseCard'
 import ExerciseAdder from './ExerciseAdder'
 import { extractExercisesFromWorkoutObject } from '../../../../lib/extractExercisesFromWorkoutObject'
 import MuscleSelector from '../../components/MuscleSelector'
+import { Separator } from '@/components/ui/separator'
 
 
 
@@ -43,12 +44,14 @@ function AddExerciseButton({ choosable = false, workout }: AddExerciseButtonProp
                 res = await api.post("/exercise/workout", {
                     userId: state.user?.userId,
                     exerciseName: name,
-                    workoutId: workout.workout_id
+                    workoutId: workout.workout_id,
+                    musclegroupNames: selectedMuscles
                 })
             } else {
                 res = await api.post("/exercise", {
                     userId: state.user?.userId,
                     exerciseName: name,
+                    musclegroupNames: selectedMuscles
                 })
             }
             if (res.status === 201) {
@@ -69,25 +72,25 @@ function AddExerciseButton({ choosable = false, workout }: AddExerciseButtonProp
 
     const heading = choosable ? "Übung hinzufügen" : "Übung erstellen"
     const [selectedMuscles, setSelectedMuscles] = useState<string[]>([])
-
     return (
         <Dialog>
-            <DialogTrigger asChild><Button>{heading}</Button></DialogTrigger>
+            <DialogTrigger asChild><Button variant={"outline"}>{heading}</Button></DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{heading}</DialogTitle>
-                    <DialogDescription>
-                        Name der Übung eingeben
-                    </DialogDescription>
+
                 </DialogHeader>
                 <div className=''>
                     {choosable && exercises ?
                         <div>
                             <ExerciseAdder workout={workout} />
-                            <form className="flex mt-4 gap-2" onSubmit={(e) => handleSubmit(e)}>
+                            <DialogDescription className='mt-4 flex justify-center items-center'>
+                                oder neue Übung erstellen
+                            </DialogDescription>
+                            <form className="flex mt-4 gap-4 flex-col" onSubmit={(e) => handleSubmit(e)}>
                                 <Input value={name} onChange={(e) => setName(e.target.value)} placeholder='Neue Übung erstellen' />
-                                {/* <MuscleSelector selectedMusclegroups={selectedMuscles} setSelectedMusclegroups={setSelectedMuscles} /> */}
-                                <Button>Erstellen</Button>
+                                <MuscleSelector selectedMusclegroups={selectedMuscles} setSelectedMusclegroups={setSelectedMuscles} />
+                                <Button disabled={selectedMuscles.length < 1} variant={selectedMuscles.length === 0 ? "outline" : "default"}>Erstellen</Button>
                             </form>
                         </div>
                         :

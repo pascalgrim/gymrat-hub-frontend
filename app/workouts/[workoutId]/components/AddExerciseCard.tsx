@@ -26,7 +26,7 @@ function AddExerciseCard({ exercise, workoutId }: AddExerciseCardProps) {
     return (
         <div className='card flex justify-between items-center'>
             <div>{exercise.exercise_name}</div>
-            <Plus onClick={handleClick} className='cursor-pointer' />
+            <Plus onClick={handleClick} className='cursor-pointer' size={16} />
         </div>
     )
 }

@@ -13,7 +13,7 @@ type ExerciseDayCardProps = {
 function ExerciseDayCard({ betterThanPrev = false, exerciseDay }: ExerciseDayCardProps) {
     const arrow = betterThanPrev ? <ArrowUp size={20} color='#06CF06' /> : <ArrowDown size={20} color='#ff0000' />
     return (
-        <div className='border p-6 rounded-lg flex flex-col justify-between h-96'>
+        <div className='card p-6 rounded-lg flex flex-col justify-between h-96'>
             <div className='flex justify-between items-start'>
                 <div className='flex flex-col'>
                     <h3 className='text-sm'>Volumen</h3>
