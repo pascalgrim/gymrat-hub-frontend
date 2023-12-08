@@ -26,22 +26,19 @@ async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }
             <TitleSection title={exercise.exercise_name}>
                 <ExerciseOptions exercise={exercise} />
             </TitleSection>
-            <div className={cn('grid grid-cols-4', gap)}>
-                <div className={cn('grid grid-cols-4 col-span-4 h-80', gap)}>
-                    <ChartCard exercise={exercise} className={cn('col-span-2', gap)} />
-                    <div className={cn('col-span-1 grid grid-rows-2', gap)}>
-                        <StatCard title='Maximales Gewicht' value={getMaxWeight(exercise).toString() + " Kg"} />
-                        <StatCard title='Maximales Volumen' value={getMaxVolumn(exercise).toString()} />
-
-                    </div>
-                    <div className={cn('col-span-1')}>
-                        <AddSetForm exerciseId={+params.exerciseId} date={formatDate(new Date())} />
-                    </div>
+            <div className={cn('grid md:grid-cols-4 sm:grid-cols-2 col-span-4  ', gap)}>
+                <ChartCard exercise={exercise} className={cn('col-span-2', gap)} />
+                <div className={cn('col-span-1 grid grid-rows-2', gap)}>
+                    <StatCard title='Maximales Gewicht' value={getMaxWeight(exercise).toString() + " Kg"} />
+                    <StatCard title='Maximales Volumen' value={getMaxVolumn(exercise).toString()} />
                 </div>
-                <Section title='Sätze' className={cn('col-span-4')}>
-                    <ExerciseDayList exerciseDays={exercise.ExerciseDays} />
-                </Section>
-            </div >
+                <div className={cn('col-span-1')}>
+                    <AddSetForm exerciseId={+params.exerciseId} date={formatDate(new Date())} />
+                </div>
+            </div>
+            <Section title='Sätze' className={cn('col-span-4')}>
+                <ExerciseDayList exerciseDays={exercise.ExerciseDays} />
+            </Section>
         </Container >
     )
 }

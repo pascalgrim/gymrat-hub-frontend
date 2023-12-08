@@ -25,7 +25,7 @@ function LargeExerciseList() {
 
     return (
         <Section title="Übungen" button={<AddExerciseButton />} >
-            <div className="grid grid-cols-6 gap-4">
+            <div className="grid  lg:grid-cols-4 xl:grid-cols-6 sm:grid-cols-2 gap-4">
                 {exercises?.map(exercise => <ExerciseCard exercise={exercise} key={exercise.exercise_id} />)}
             </div>
         </Section>
