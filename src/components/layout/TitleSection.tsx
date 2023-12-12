@@ -22,7 +22,7 @@ function TitleSection({ title, children }: TitleSectionProps) {
 
   return (
     <div className={cn('flex flex-col')}>
-      <div className='flex justify-between items-center bg-background z-10 h-40 sticky top-0'>
+      <div className='flex justify-between items-center bg-background h-40 sticky top-0'>
         <div className='flex gap-4 items-center'>
           {menuIsOpen ? <X size={32} className={menuIconStyle} onClick={handleMenuClick} /> : <Menu size={32} className={menuIconStyle} onClick={handleMenuClick} />}
           <h1 className=''>{title}</h1>

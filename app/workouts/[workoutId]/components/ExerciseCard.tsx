@@ -16,7 +16,7 @@ function ExerciseCard({ exercise }: ExerciseCardProps) {
         router.replace(`/exercises/${exercise.exercise_id}`)
     }
     return (
-        <div className='border rounded-lg flex flex-col items-center justify-between bg-card  hover:scale-105 cursor-pointer transition'>
+        <div className='border rounded-lg flex flex-col items-center justify-between bg-card  hover:scale-105 cursor-pointer transition' onClick={handleClick}>
             <Image src={"/backWorkout.png"} alt="" width={9999} height={9999} className='w-full object-cover h-40 object-top rounded-lg' />
 
             <div className='flex justify-between w-full p-4 items-end'>
@@ -25,7 +25,6 @@ function ExerciseCard({ exercise }: ExerciseCardProps) {
 
                     <span className='text-sm text-gray-400'>{formatRelativeDate(new Date(exercise.updated_at))}</span>
                 </div>
-                <ChevronRight onClick={handleClick} className='cursor-pointer'></ChevronRight>
             </div>
         </div>
     )

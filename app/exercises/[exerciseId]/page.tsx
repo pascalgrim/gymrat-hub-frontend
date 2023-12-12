@@ -24,7 +24,7 @@ async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }
     return (
         <Container>
             <TitleSection title={exercise.exercise_name}>
-                <ExerciseOptions exercise={exercise} />
+                {/* <ExerciseOptions exercise={exercise} /> */}
             </TitleSection>
             <div className={cn('grid md:grid-cols-4 sm:grid-cols-2 col-span-4  ', gap)}>
                 <ChartCard exercise={exercise} className={cn('col-span-2', gap)} />
