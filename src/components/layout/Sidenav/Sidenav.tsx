@@ -34,6 +34,7 @@ function Sidenav({ width }: { width: string }) {
                 <SidenavList />
             </div>
             {/* DOWN */}
+            {/* <DarkModeToggle /> */}
             <div className={cn('flex items-center gap-2 w-full px-12', flex)}>
                 <div className='flex gap-2 items-center w-full justify-center '>
                     {user && <Avatar className=''>
@@ -48,7 +49,6 @@ function Sidenav({ width }: { width: string }) {
                         </div>
                     }
                 </div>
-
                 <SignInButton className='w-full' />
             </div>
         </div>

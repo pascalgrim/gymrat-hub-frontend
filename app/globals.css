@@ -44,6 +44,8 @@
     --card: 0, 0%, 8%;
     --card-foreground: 210 40% 98%;
 
+    --secondary-card: 0, 0%, 12%;
+
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
@@ -94,6 +96,6 @@
 @layer components {
 
   .card {
-    @apply border rounded-lg p-4 bg-card
+    @apply border rounded-lg p-4 bg-card hover:bg-[#111]
   }
 }

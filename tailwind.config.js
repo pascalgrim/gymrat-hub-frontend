@@ -23,6 +23,7 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         secondaryBackground: "hsl(var(--secondary-background))",
+        secondaryCard: "hsl(var(--secondary-card))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

@@ -13,14 +13,14 @@ import StatCard from '../../workouts/[workoutId]/components/StatCard'
 import { getMaxWeight } from './getMaxWeight'
 import { getMaxVolumn } from './getMaxVolumn'
 import ExerciseOptions from './components/ExerciseOptions'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }) {
     const res = await api.get(`/exercise/${params.exerciseId}`)
     const exercise: Exercise = res.data
-
-
-
     const gap = "gap-2"
+
     return (
         <Container>
             <TitleSection title={exercise.exercise_name}>
@@ -36,8 +36,9 @@ async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }
                     <AddSetForm exerciseId={+params.exerciseId} date={formatDate(new Date())} />
                 </div>
             </div>
-            <Section title='Sätze' className={cn('col-span-4')}>
+            <Section title='Sätze' className={cn('col-span-4')} button={<Link href={`/exercises/${exercise.exercise_id}/sets`}><Button variant='link' className='text-foreground'>Alle Sätze</Button></Link>}>
                 <ExerciseDayList exerciseDays={exercise.ExerciseDays} />
+
             </Section>
         </Container >
     )
