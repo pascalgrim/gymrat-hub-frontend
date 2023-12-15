@@ -82,7 +82,7 @@ function ChartCard({ exercise, className, ...rest }: ChartCardProps) {
     return (
         <div ref={ref} className={cn(`card`, className)} {...rest} suppressHydrationWarning>
             <h4 className=''>Fortschritt</h4>
-            <AreaChart width={width} height={height} data={data}
+            {data.length > 1 ? <AreaChart width={width} height={height} data={data}
             >
                 <defs>
                     <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
@@ -95,7 +95,10 @@ function ChartCard({ exercise, className, ...rest }: ChartCardProps) {
                 //TODO: styling
                 <Tooltip contentStyle={{ color: "black", backgroundColor: "gray", border: "none", borderRadius: 15 }} />
                 <Area type="monotone" dataKey="volumn" stroke="#c3ff00" fillOpacity={1} fill="url(#colorUv)" />
-            </AreaChart>
+            </AreaChart> : <div className='flex justify-center items-center w-full h-full'><div className='flex flex-col items-center'>
+                <div>Füge mehr Sätze hinzu</div>
+                <div className='text-gray-500'>(mind. 2 Tage)</div></div></div>}
+
         </div>
     );
 }
