@@ -21,6 +21,7 @@ async function ExerciseDetailPage({ params }: { params: { exerciseId: string } }
     const exercise: Exercise = res.data
     const gap = "gap-2"
 
+
     return (
         <Container>
             <TitleSection title={exercise.exercise_name}>

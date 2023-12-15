@@ -32,12 +32,12 @@ function ExerciseAdder({ workout }: ExerciseAdderProps) {
         }
     }, [allExercises, workout, workout]);
     return (
-        <div>
+        <div className='mt-2'>
             <div className='flex gap-2 items-center mb-2'>
                 <Search size={18} />
                 <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Nach Übung suchen' className="" />
             </div>
-            <ScrollArea className='h-64'>
+            <ScrollArea className='h-64 mt-4'>
                 <div className='grid grid-cols-2 gap-2'>
                     {exercises?.map(exercise => {
                         const el = <AddExerciseCard exercise={exercise} workoutId={workout.workout_id} key={exercise.exercise_id} />

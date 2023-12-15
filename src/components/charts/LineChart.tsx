@@ -93,7 +93,7 @@ function ChartCard({ exercise, className, ...rest }: ChartCardProps) {
                 <XAxis dataKey="name" tickLine={false} axisLine={false} />
                 <YAxis domain={[minVolumn, 'dataMax']} hide />
                 //TODO: styling
-                <Tooltip contentStyle={{ color: "black", backgroundColor: "gray", border: "none", borderRadius: 15 }} />
+                <Tooltip contentStyle={{ color: "white", backgroundColor: "#1e1e1e", border: "none", borderRadius: 10 }} />
                 <Area type="monotone" dataKey="volumn" stroke="#c3ff00" fillOpacity={1} fill="url(#colorUv)" />
             </AreaChart> : <div className='flex justify-center items-center w-full h-full'><div className='flex flex-col items-center'>
                 <div>Füge mehr Sätze hinzu</div>

@@ -8,7 +8,11 @@ type StatCardProps = React.HTMLAttributes<HTMLDivElement> & {
 function StatCard({ title, value, className, ...props }: StatCardProps) {
     return (
         <div className={cn('card flex flex-col', className)}{...props}>
-            <h4 className=''>{title}</h4>
+            <div className='flex gap-2'>
+                <div className='h-full w-[2px] bg-primary' />
+
+                <h4 className=''>{title}</h4>
+            </div>
             <div className='w-full flex justify-center items-center h-full'>
                 <h1>{value}</h1>
             </div>
